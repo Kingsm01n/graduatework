@@ -1,0 +1,14 @@
+spring:
+  liquibase:
+    change-log: classpath:sql/changelog-master.yaml
+    contexts: ${spring.profiles.active:default}
+
+constants:
+  secretKey: ${CONSTANTS_SECRET_KEY}
+  tokenExpirationTime: ${CONSTANTS_TOKEN_EXPIRATION_TIME}
+
+email:
+  username: ${EMAIL_USERNAME}
+  confirmation:
+    url: ${EMAIL_CONFIRMATION_URL}
+    path: /api/v1/invitations/confirmInvitation

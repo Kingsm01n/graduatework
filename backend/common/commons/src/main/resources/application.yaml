@@ -1,0 +1,5 @@
+email:
+  username: ${EMAIL_USERNAME}
+  confirmation:
+    url: ${EMAIL_CONFIRMATION_URL}
+    path: /api/v1/invitations/confirmInvitation

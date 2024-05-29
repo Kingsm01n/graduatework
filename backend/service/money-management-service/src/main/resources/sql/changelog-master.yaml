@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - include:
+      file: sql/ddl/000_create_balance_table.sql
+      context: local,default,integration-test
+  - include:
+      file: sql/ddl/001_create_category_table.sql
+      context: local,default,integration-test
+  - include:
+      file: sql/ddl/002_create_budget_table.sql
+      context: local,default,integration-test
+  - include:
+      file: sql/ddl/003_create_credit_table.sql
+      context: local,default,integration-test
+  - include:
+      file: sql/ddl/004_create_transaction_table.sql
+      context: local,default,integration-test

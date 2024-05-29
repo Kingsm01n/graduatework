@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: org.h2.Driver
+    password: tomoe
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL
+    username: tomoe_user
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+  liquibase:
+    contexts: integration-test

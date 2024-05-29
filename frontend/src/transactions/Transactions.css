@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ccf;
+}
+
+.transactions-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.transactions-content {
+    width: 94%;
+    padding: 3%;
+    padding-top: 0;
+}
+
+.transactions-filter {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.transactions-filter select {
+    width: 160px;
+    font-size: 20px;
+}
+
+.add-button {
+    padding: 10px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.transactions-list {
+    list-style-type: none;
+    padding: 0;
+    padding: 10px;
+    background-color: #000;
+    border-radius: 15px;
+}
+
+.transactions-list ul {
+    max-height: 580px;
+    overflow-y: scroll;
+}
+
+.transaction-item {
+    display: flex;
+    font-size: 30px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.transaction-item span {
+    flex: 1;
+}
+
+.edit-button, .delete-button {
+    padding: 5px 10px;
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 10px;
+}

@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: user-service-local
+  datasource:
+    username: postgres
+    password: root
+    #?stringtype=unspecified need to convert string into enum type in db
+    url: jdbc:postgresql://localhost:6543/user-service?stringtype=unspecified
+
+constants:
+  secretKey: "secretKeySecretKeySecretKeySecretKeySecretKeySecretKey"
+  tokenExpirationTime: 3600000
+
+email:
+  username: test
+  confirmation:
+    url: http://localhost:8080
+    path: /api/v1/invitations/confirmInvitation

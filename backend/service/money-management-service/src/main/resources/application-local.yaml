@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: money-management-service-local
+  datasource:
+    username: postgres
+    password: root
+    #?stringtype=unspecified need to convert string into enum type in db
+    url: jdbc:postgresql://localhost:6543/money-management-service?stringtype=unspecified
+
+email:
+  username: test
+  confirmation:
+    url: http://localhost:8080
+    path: /api/v1/invitations/confirmInvitation

@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - include:
+      file: sql/ddl/000_create_invitation_table.sql
+      context: local,default,integration-test
+  - include:
+      file: sql/ddl/001_create_user_table.sql
+      context: local,default,integration-test

@@ -1,0 +1,74 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  base:
+    build:
+      context: ./backend/common/.
+      dockerfile: Dockerfile
+    image: base
+    environment:
+      - EMAIL_USERNAME=test
+      - EMAIL_CONFIRMATION_URL=http://localhost:8080
+
+
+  user-service:
+    build:
+      context: ./backend/service/user-service/.
+      dockerfile: Dockerfile
+    image: user-service
+    environment:
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/user-service?stringtype=unspecified
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - CONSTANTS_SECRET_KEY=secretKeySecretKeySecretKeySecretKeySecretKeySecretKey
+      - CONSTANTS_TOKEN_EXPIRATION_TIME=36000
+      - EMAIL_USERNAME=test
+      - EMAIL_CONFIRMATION_URL=http://localhost:8080
+    ports:
+      - "8080:8080"
+      - "8888:8888"
+    depends_on:
+      - postgres
+      - base
+
+  money-management-service:
+    build:
+      context: ./backend/service/money-management-service/.
+      dockerfile: Dockerfile
+    image: money-management-service
+    environment:
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/money-management-service?stringtype=unspecified
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - EMAIL_USERNAME=test
+      - EMAIL_CONFIRMATION_URL=http://localhost:8080
+    ports:
+      - "8081:8080"
+      - "8889:8888"
+    depends_on:
+      - postgres
+      - base
+
+#  bank-integration-service:
+#    build:
+#      context: ./backend/service/bank-integration-service/.
+#      dockerfile: Dockerfile
+#    environment:
+#      - SPRING_DATASOURCE_PASSWORD=postgres
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/bank-integration-service
+#      - SPRING_DATASOURCE_USERNAME=postgres
+#    ports:
+#      - "8082:8080"
+#    depends_on:
+#      - postgres

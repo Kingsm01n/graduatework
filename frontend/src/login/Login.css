@@ -1,0 +1,79 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ccf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.login-box {
+    background-color: #ccf;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.login-box h1 {
+    margin: 0;
+    font-size: 48px;
+}
+
+.login-box p {
+    margin: 10px 0 20px;
+    font-size: 18px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.input-group input {
+    width: 100%;
+    max-width: 300px; /* Ограничение максимальной ширины полей ввода */
+    padding: 10px;
+    border: none; /* Убрана обводка */
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавлена тень */
+}
+
+.login-button {
+    width: 100%;
+    max-width: 300px; /* Ограничение максимальной ширины кнопки */
+    padding: 10px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавлена тень */
+}
+
+.login-links {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.login-links a {
+    color: #000;
+    text-decoration: none;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}

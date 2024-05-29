@@ -1,0 +1,10 @@
+spring:
+  liquibase:
+    change-log: classpath:sql/changelog-master.yaml
+    contexts: ${spring.profiles.active:default}
+
+email:
+  username: ${EMAIL_USERNAME}
+  confirmation:
+    url: ${EMAIL_CONFIRMATION_URL}
+    path: /api/v1/invitations/confirmInvitation
