@@ -19,4 +19,5 @@ public interface TransactionService {
 
     Transaction updateTransaction(UUID transactionId, Transaction transaction);
 
+    void deleteTransaction(UUID transactionId);
 }

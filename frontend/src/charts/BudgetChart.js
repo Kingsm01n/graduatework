@@ -10,17 +10,17 @@ const BudgetChart = ({ budgets }) => {
         labels,
         datasets: [
             {
-                label: 'Использовано',
+                label: 'Використано',
                 data: budgets.map(budget => Math.min(budget.currentValue, budget.neededValue)),
                 backgroundColor: 'gray'
             },
             {
-                label: 'Остаток',
+                label: 'Залишок',
                 data: budgets.map(budget => Math.max(0, budget.neededValue - budget.currentValue)),
                 backgroundColor: 'green'
             },
             {
-                label: 'Превышение',
+                label: 'Перевикористано',
                 data: budgets.map(budget => Math.max(0, budget.currentValue - budget.neededValue)),
                 backgroundColor: 'red'
             }
@@ -35,7 +35,7 @@ const BudgetChart = ({ budgets }) => {
             },
             title: {
                 display: true,
-                text: 'Бюджеты'
+                text: 'Бюджети'
             }
         },
         scales: {

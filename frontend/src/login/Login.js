@@ -62,7 +62,6 @@ const Login = () => {
                 </form>
                 <div className="links">
                     <a href="/register">Реєстрація</a>
-                    <a href="#">Забув пароль?</a>
                 </div>
             </div>
         </div>

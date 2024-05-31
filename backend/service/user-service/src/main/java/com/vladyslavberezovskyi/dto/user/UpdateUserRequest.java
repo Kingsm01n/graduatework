@@ -1,4 +1,4 @@
-package com.vladyslavberezovskyi.dto.category;
+package com.vladyslavberezovskyi.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PatchCategoryRequest {
+public class UpdateUserRequest {
 
     private String name;
+    private String email;
+    private String password;
+    private String phoneNumber;
+
 }

@@ -9,10 +9,13 @@ import com.vladyslavberezovskyi.dao.repository.TransactionRepository;
 import com.vladyslavberezovskyi.error.ResourceNotFoundException;
 import com.vladyslavberezovskyi.mapper.BudgetMapper;
 import com.vladyslavberezovskyi.model.Budget;
+import com.vladyslavberezovskyi.security.UserDetails;
 import com.vladyslavberezovskyi.service.BudgetService;
+import com.vladyslavberezovskyi.util.EmailSender;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,6 +29,7 @@ public class BudgetServiceImpl implements BudgetService {
     private final BudgetRepository repository;
     private final CategoryRepository categoryRepository;
     private final TransactionRepository transactionRepository;
+    private final EmailSender emailSender;
 
     @Override
     public Budget getBudgetById(UUID budgetId) {
@@ -69,6 +73,28 @@ public class BudgetServiceImpl implements BudgetService {
         mapper.update(budgetEntity, budget);
         repository.saveAndFlush(budgetEntity);
 
+        if (budgetEntity.getCurrentValue() >= budgetEntity.getNeededValue()) {
+            String email = ((UserDetails) SecurityContextHolder.getContext()
+                    .getAuthentication()
+                    .getPrincipal())
+                    .getUsername();
+            try {
+                emailSender.sendWarning(email,
+                        budgetEntity.getName(),
+                        budgetEntity.getCurrentValue() + "/" + budgetEntity.getNeededValue());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         return mapper.entityToModel(budgetEntity);
+    }
+
+    @Override
+    public void deleteBudget(UUID budgetId) {
+        BudgetEntity budgetEntity = repository.findById(budgetId)
+                        .orElseThrow(ResourceNotFoundException::new);
+
+        repository.delete(budgetEntity);
     }
 }

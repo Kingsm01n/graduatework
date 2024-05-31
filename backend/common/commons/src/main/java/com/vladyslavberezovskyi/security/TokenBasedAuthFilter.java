@@ -59,7 +59,9 @@ public class TokenBasedAuthFilter extends OncePerRequestFilter {
                 .enabled(jWtClaimsSet.getBooleanClaim("enabled"))
                 .build();
 
-        SecurityContextHolder.getContext()
-                .setAuthentication(new UsernamePasswordAuthenticationToken(userDetails, userDetails, userDetails.getAuthorities()));
+        if (userDetails.isEnabled()) {
+            SecurityContextHolder.getContext()
+                    .setAuthentication(new UsernamePasswordAuthenticationToken(userDetails, userDetails, userDetails.getAuthorities()));
+        }
     }
 }

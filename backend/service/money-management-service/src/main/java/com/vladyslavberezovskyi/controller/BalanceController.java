@@ -42,7 +42,7 @@ public class BalanceController {
     }
 
     @PostMapping
-    public BalanceResponse createBalance(CreateBalanceRequest createBalanceRequest) {
+    public BalanceResponse createBalance(@RequestBody CreateBalanceRequest createBalanceRequest) {
         return mapper.modelToDto(service.createBalance(mapper.dtoToModel(createBalanceRequest)));
     }
 
@@ -50,5 +50,10 @@ public class BalanceController {
     public BalanceResponse updateBalance(@PathVariable UUID balanceId,
                                          @RequestBody PatchBalanceRequest patchBalanceRequest) {
         return mapper.modelToDto(service.updateBalance(balanceId, mapper.dtoToModel(patchBalanceRequest)));
+    }
+
+    @DeleteMapping(path = "/{balanceId}")
+    public void deleteBalance(@PathVariable UUID balanceId) {
+        service.deleteBalance(balanceId);
     }
 }

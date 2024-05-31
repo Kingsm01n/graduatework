@@ -59,4 +59,10 @@ public class BudgetController {
                                        @RequestBody PatchBudgetRequest patchBudgetRequest) {
         return mapper.modelToDto(service.updateBudget(budgetId, mapper.dtoToModel(patchBudgetRequest)));
     }
+
+    @IsUser
+    @DeleteMapping("/{budgetId}")
+    public void deleteBudget(@PathVariable UUID budgetId) {
+        service.deleteBudget(budgetId);
+    }
 }

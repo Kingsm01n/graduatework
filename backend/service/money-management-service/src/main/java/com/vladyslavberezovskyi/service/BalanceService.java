@@ -19,4 +19,5 @@ public interface BalanceService {
 
     Balance updateBalance(UUID balanceId, Balance balance);
 
+    void deleteBalance(UUID balanceId);
 }

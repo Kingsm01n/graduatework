@@ -15,7 +15,7 @@ const Header = () => {
         navigate('/balances');
     }
     const handleAnalytic = () => {
-        navigate('/analytic');
+        navigate('/analytics');
     }
     const handleBudgets = () => {
         navigate('/budgets');
@@ -32,7 +32,7 @@ const Header = () => {
         <header className="App-header">
           <div className="header-content">
             <h1 onClick={handleHome}>Finio</h1>
-            <p>Все для твоего финансового комфорту</p>
+            <p>Все для твого фінансового комфорту</p>
           </div>
           <div className="header-buttons">
             <button className="transactions-button" onClick={handleTransactions}>Транзакції</button>

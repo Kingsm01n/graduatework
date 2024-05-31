@@ -1,6 +1,8 @@
 package com.vladyslavberezovskyi.service.impl;
 
+import com.vladyslavberezovskyi.dao.entity.InvitationEntity;
 import com.vladyslavberezovskyi.dao.entity.UserEntity;
+import com.vladyslavberezovskyi.dao.repository.InvitationRepository;
 import com.vladyslavberezovskyi.dao.repository.UserRepository;
 import com.vladyslavberezovskyi.error.ForbiddenException;
 import com.vladyslavberezovskyi.error.ResourceNotFoundException;
@@ -8,13 +10,16 @@ import com.vladyslavberezovskyi.error.UserAlreadyExistsException;
 import com.vladyslavberezovskyi.mapper.UserMapper;
 import com.vladyslavberezovskyi.model.User;
 import com.vladyslavberezovskyi.security.TokenResponse;
+import com.vladyslavberezovskyi.security.UserDetails;
 import com.vladyslavberezovskyi.security.enums.Role;
 import com.vladyslavberezovskyi.service.InvitationService;
 import com.vladyslavberezovskyi.service.UserService;
+import com.vladyslavberezovskyi.util.EmailSender;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,10 +38,13 @@ public class UserServiceImpl implements UserService {
     private final UserRepository repository;
     private final UserMapper mapper;
     private final InvitationService invitationService;
+    private final InvitationRepository invitationRepository;
     private final PasswordEncoder encoder;
+    private final EmailSender emailSender;
 
     @Override
-    public User getUserById(UUID id) {
+    public User getUserById() {
+        UUID id = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         UserEntity userEntity = repository.findById(id)
                 .orElseThrow(ResourceNotFoundException::new);
 
@@ -76,6 +84,36 @@ public class UserServiceImpl implements UserService {
         tokenResponse.setToken(generateJWT(userEntity.getId(), userEntity.getEmail(), userEntity.getPassword(), userEntity.getRole(), userEntity.isEnabled()));
         tokenResponse.setExpiresIn(tokenExpirationTime);
         return tokenResponse;
+    }
+
+    @Override
+    public User updateUser(User user) {
+        UUID id = ((UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        UserEntity userEntity = repository.findById(id)
+                .orElseThrow(ResourceNotFoundException::new);
+
+        if (user.getEmail() == null) {
+            user.setEmail(userEntity.getEmail());
+        }
+
+        if (!user.getEmail().equals(userEntity.getEmail())) {
+            InvitationEntity invitationEntity = invitationRepository.findByEmail(userEntity.getEmail());
+            invitationEntity.setEmail(user.getEmail());
+            invitationEntity.setEmailConfirmed(false);
+            invitationRepository.saveAndFlush(invitationEntity);
+
+            emailSender.sendInvitation(user.getEmail(), invitationEntity.getId());
+            userEntity.setEnabled(false);
+        }
+
+        mapper.update(userEntity, user);
+        if (user.getPassword() != null && !user.getPassword().isBlank()) {
+            userEntity.setPassword(encoder.encode(user.getPassword()));
+        }
+
+        userEntity = repository.saveAndFlush(userEntity);
+
+        return mapper.entityToModel(userEntity);
     }
 
     private String generateJWT(UUID id, String email, String password, Role role, boolean enabled) {

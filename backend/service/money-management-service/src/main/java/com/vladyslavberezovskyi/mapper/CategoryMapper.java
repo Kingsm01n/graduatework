@@ -6,6 +6,7 @@ import com.vladyslavberezovskyi.dto.category.CreateCategoryRequest;
 import com.vladyslavberezovskyi.dto.category.PatchCategoryRequest;
 import com.vladyslavberezovskyi.model.Category;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.springframework.data.domain.Page;
 import org.springframework.lang.Nullable;
@@ -62,5 +63,6 @@ public interface CategoryMapper {
 
     CategoryEntity modelToEntity(Category category);
 
+    @Mapping(target = "id", ignore = true)
     void update(@MappingTarget CategoryEntity categoryEntity, Category category);
 }

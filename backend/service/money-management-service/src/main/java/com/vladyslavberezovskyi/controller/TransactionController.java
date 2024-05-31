@@ -57,4 +57,10 @@ public class TransactionController {
                                                  @RequestBody PatchTransactionRequest patchTransactionRequest) {
         return mapper.modelToDto(service.updateTransaction(transactionId, mapper.dtoToModel(patchTransactionRequest)));
     }
+
+    @IsUser
+    @DeleteMapping("/{transactionId}")
+    public void deleteTransaction(@PathVariable UUID transactionId) {
+        service.deleteTransaction(transactionId);
+    }
 }

@@ -44,7 +44,6 @@ public interface TransactionMapper {
     Transaction dtoToModel(PatchTransactionRequest patchTransactionRequest);
 
     @Mapping(target = "balance", source = "balance.id")
-    @Mapping(target = "credit", source = "credit.id")
     @Mapping(target = "category", source = "category.id")
     Transaction entityToModel(TransactionEntity transactionEntity);
 
@@ -67,12 +66,11 @@ public interface TransactionMapper {
     }
 
     @Mapping(target = "balance", ignore = true)
-    @Mapping(target = "credit", ignore = true)
     @Mapping(target = "category", ignore = true)
     TransactionEntity modelToEntity(Transaction transaction);
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "balance", ignore = true)
-    @Mapping(target = "credit", ignore = true)
     @Mapping(target = "category", ignore = true)
     void update(@MappingTarget TransactionEntity transactionEntity, Transaction transaction);
 

@@ -57,4 +57,10 @@ public class CategoryController {
         return mapper.modelToDto(service.updateCategory(categoryId, mapper.dtoToModel(patchCategoryRequest)));
     }
 
+    @IsUser
+    @DeleteMapping("/{categoryId}")
+    public void deleteCategory(@PathVariable UUID categoryId) {
+        service.deleteCategory(categoryId);
+    }
+
 }

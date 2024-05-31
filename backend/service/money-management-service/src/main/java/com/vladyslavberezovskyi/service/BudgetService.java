@@ -19,4 +19,5 @@ public interface BudgetService {
 
     Budget updateBudget(UUID budgetId, Budget budget);
 
+    void deleteBudget(UUID budgetId);
 }

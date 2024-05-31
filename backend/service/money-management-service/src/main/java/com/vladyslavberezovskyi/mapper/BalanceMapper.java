@@ -68,6 +68,7 @@ public interface BalanceMapper {
     @Mapping(target = "transactions", ignore = true)
     BalanceEntity modelToEntity(Balance balance);
 
+    @Mapping(target = "id", ignore = true)
     @Mapping(target = "transactions", ignore = true)
     void update(@MappingTarget BalanceEntity balanceEntity, Balance balance);
 }

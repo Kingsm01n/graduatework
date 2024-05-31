@@ -104,9 +104,72 @@ public class TransactionServiceImpl implements TransactionService {
     public Transaction updateTransaction(UUID transactionId, Transaction transaction) {
         TransactionEntity transactionEntity = repository.findById(transactionId)
                 .orElseThrow(ResourceNotFoundException::new);
+
+        List<BudgetEntity> oldBudgetEntities = budgetRepository.findAllByCategory(transactionEntity.getCategory());
+        for (BudgetEntity oldBudgetEntity : oldBudgetEntities) {
+            oldBudgetEntity.setCurrentValue(oldBudgetEntity.getCurrentValue() + transactionEntity.getValue());
+        }
+        budgetRepository.saveAllAndFlush(oldBudgetEntities);
+
+        BalanceEntity oldBalanceEntity = balanceRepository.findById(transactionEntity.getBalance().getId())
+                .orElseThrow(ResourceNotFoundException::new);
+        oldBalanceEntity.setCurrentValue(oldBalanceEntity.getCurrentValue() - transactionEntity.getValue());
+        balanceRepository.saveAndFlush(oldBalanceEntity);
+
         mapper.update(transactionEntity, transaction);
+
+        CategoryEntity newCategoryEntity = categoryRepository.findById(transaction.getCategory())
+                .orElseThrow(ResourceNotFoundException::new);
+
+        List<BudgetEntity> newBudgetEntities = budgetRepository.findAllByCategory(newCategoryEntity);
+        newBudgetEntities.forEach(budgetEntity -> budgetEntity.setCurrentValue(budgetEntity.getCurrentValue() - transaction.getValue()));
+        budgetRepository.saveAllAndFlush(newBudgetEntities);
+
+        newBudgetEntities.forEach(budgetEntity -> {
+            if (budgetEntity.getCurrentValue() >= budgetEntity.getNeededValue()) {
+                String email = ((UserDetails) SecurityContextHolder.getContext()
+                        .getAuthentication()
+                        .getPrincipal())
+                        .getUsername();
+                try {
+                    emailSender.sendWarning(email,
+                            budgetEntity.getName(),
+                            budgetEntity.getCurrentValue() + "/" + budgetEntity.getNeededValue());
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        BalanceEntity newBalanceEntity = balanceRepository.findById(transaction.getBalance())
+                .orElseThrow(ResourceNotFoundException::new);
+        newBalanceEntity.setCurrentValue(newBalanceEntity.getCurrentValue() + transaction.getValue());
+        balanceRepository.saveAndFlush(newBalanceEntity);
+
+        transactionEntity.setBalance(newBalanceEntity);
+        transactionEntity.setCategory(newCategoryEntity);
+
         transactionEntity = repository.saveAndFlush(transactionEntity);
 
         return mapper.entityToModel(transactionEntity);
+    }
+
+    @Override
+    public void deleteTransaction(UUID transactionId) {
+        TransactionEntity transactionEntity = repository.findById(transactionId)
+                .orElseThrow(ResourceNotFoundException::new);
+
+        List<BudgetEntity> oldBudgetEntities = budgetRepository.findAllByCategory(transactionEntity.getCategory());
+        for (BudgetEntity oldBudgetEntity : oldBudgetEntities) {
+            oldBudgetEntity.setCurrentValue(oldBudgetEntity.getCurrentValue() + transactionEntity.getValue());
+        }
+        budgetRepository.saveAllAndFlush(oldBudgetEntities);
+
+        BalanceEntity oldBalanceEntity = balanceRepository.findById(transactionEntity.getBalance().getId())
+                .orElseThrow(ResourceNotFoundException::new);
+        oldBalanceEntity.setCurrentValue(oldBalanceEntity.getCurrentValue() - transactionEntity.getValue());
+        balanceRepository.saveAndFlush(oldBalanceEntity);
+
+        repository.delete(transactionEntity);
     }
 }

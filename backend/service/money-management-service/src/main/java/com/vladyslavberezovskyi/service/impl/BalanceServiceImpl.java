@@ -1,7 +1,9 @@
 package com.vladyslavberezovskyi.service.impl;
 
 import com.vladyslavberezovskyi.dao.entity.BalanceEntity;
+import com.vladyslavberezovskyi.dao.entity.TransactionEntity;
 import com.vladyslavberezovskyi.dao.repository.BalanceRepository;
+import com.vladyslavberezovskyi.dao.repository.TransactionRepository;
 import com.vladyslavberezovskyi.error.ResourceNotFoundException;
 import com.vladyslavberezovskyi.mapper.BalanceMapper;
 import com.vladyslavberezovskyi.model.Balance;
@@ -20,6 +22,7 @@ public class BalanceServiceImpl implements BalanceService {
 
     private final BalanceRepository repository;
     private final BalanceMapper mapper;
+    private final TransactionRepository transactionRepository;
 
     @Override
     public Balance getBalanceById(UUID balanceId) {
@@ -53,5 +56,16 @@ public class BalanceServiceImpl implements BalanceService {
         repository.saveAndFlush(balanceEntity);
 
         return mapper.entityToModel(balanceEntity);
+    }
+
+    @Override
+    public void deleteBalance(UUID balanceId) {
+        BalanceEntity balanceEntity = repository.findById(balanceId)
+                .orElseThrow(ResourceNotFoundException::new);
+
+        List<TransactionEntity> transactionEntities = transactionRepository.findAllByBalanceId(balanceId);
+        transactionRepository.deleteAllInBatch(transactionEntities);
+
+        repository.delete(balanceEntity);
     }
 }

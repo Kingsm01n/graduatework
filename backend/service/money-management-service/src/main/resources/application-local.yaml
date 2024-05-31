@@ -3,9 +3,9 @@ spring:
     name: money-management-service-local
   datasource:
     username: postgres
-    password: root
+    password: postgres
     #?stringtype=unspecified need to convert string into enum type in db
-    url: jdbc:postgresql://localhost:6543/money-management-service?stringtype=unspecified
+    url: jdbc:postgresql://localhost:5432/money-management-service?stringtype=unspecified
 
 email:
   username: test

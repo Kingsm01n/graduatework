@@ -1,11 +1,10 @@
 package com.vladyslavberezovskyi.security;
 
 import lombok.Getter;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Getter
@@ -22,7 +21,13 @@ public class IgnoredPathProperties {
     private final Set<AntPathRequestMatcher> antMatchers;
 
     public IgnoredPathProperties() {
-        this.antMatchers = IGNORE.stream().map(AntPathRequestMatcher::new).collect(Collectors.toSet());
+        this.antMatchers = IGNORE.stream().map(path -> {
+            if (path.contains("users")) {
+                return new AntPathRequestMatcher(path, HttpMethod.POST.name());
+            } else {
+                return new AntPathRequestMatcher(path);
+            }
+        }).collect(Collectors.toSet());
     }
 
 }

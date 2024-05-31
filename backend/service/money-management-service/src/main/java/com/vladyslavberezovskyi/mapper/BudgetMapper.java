@@ -66,6 +66,8 @@ public interface BudgetMapper {
     @Mapping(target = "category", ignore = true)
     BudgetEntity modelToEntity(Budget budget);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "currentValue", ignore = true)
     @Mapping(target = "category", ignore = true)
     void update(@MappingTarget BudgetEntity budgetEntity, Budget budget);
 

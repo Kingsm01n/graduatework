@@ -1,0 +1,43 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ccf; /* Background color matching the design */
+    margin: 0;
+    padding: 0;
+}
+
+.analytics {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    text-align: left;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Analytics section styles */
+.analytics-section {
+    width: 100%;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.analytics-section h2 {
+    margin-top: 0;
+    color: #000; /* Black text color */
+}
+
+.charts {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.chart {
+    width: 48%;
+}
