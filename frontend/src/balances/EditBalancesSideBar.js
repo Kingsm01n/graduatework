@@ -20,7 +20,7 @@ const EditBalancesSideBar = ({ balance, onClose, onEditBalance }) => {
             <button className="close-button" onClick={onClose}>Закрити</button>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label>Название балансу:</label>
+                    <label>Назва балансу:</label>
                     <input
                         type="text"
                         value={balanceName}
@@ -29,7 +29,7 @@ const EditBalancesSideBar = ({ balance, onClose, onEditBalance }) => {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Сумма:</label>
+                    <label>Сума:</label>
                     <input
                         type="number"
                         value={balanceCurrentValue}
@@ -37,7 +37,7 @@ const EditBalancesSideBar = ({ balance, onClose, onEditBalance }) => {
                         required
                     />
                 </div>
-                <button type="submit" className="submit-button">Сохранить</button>
+                <button type="submit" className="submit-button">Зберегти</button>
             </form>
         </div>
     );

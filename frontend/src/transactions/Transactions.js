@@ -39,10 +39,8 @@ const Transactions = () => {
                         .filter((transaction) => transaction.id !== deletedTransaction.id)
                 );
             } else {
-                console.error('Ошибка при добавлении транзакции');
             }
         } catch (error) {
-            console.error('Ошибка при отправке запроса:', error);
         }
     };
 
@@ -67,10 +65,8 @@ const Transactions = () => {
                     setTransactions((prevTransactions) => [...prevTransactions, data]);
                 }
             } else {
-                console.error('Ошибка при добавлении транзакции');
             }
         } catch (error) {
-            console.error('Ошибка при отправке запроса:', error);
         }
     };
 
@@ -93,10 +89,8 @@ const Transactions = () => {
                         .filter((transaction) => transaction.balance === selectedBalance)
                 );
             } else {
-                console.error('Ошибка при добавлении транзакции');
             }
         } catch (error) {
-            console.error('Ошибка при отправке запроса:', error);
         }
     };
 
@@ -116,10 +110,8 @@ const Transactions = () => {
                 const data = await response.json();
                 setTransactions(data);
             } else {
-                console.error('Ошибка при получении баланса');
             }
         } catch (error) {
-            console.error('Ошибка при отправке запроса:', error);
         }
     }
     useEffect(() => {
@@ -152,16 +144,12 @@ const Transactions = () => {
                             const data = await response.json();
                             setTransactions(data);
                         } else {
-                            console.error('Ошибка при получении баланса');
                         }
                     } catch (error) {
-                        console.error('Ошибка при отправке запроса:', error);
                     }
                 } else {
-                    console.error('Ошибка при получении баланса');
                 }
             } catch (error) {
-                console.error('Ошибка при отправке запроса:', error);
             }
         };
 
@@ -179,10 +167,8 @@ const Transactions = () => {
                     const data = await response.json();
                     setCategories(data);
                 } else {
-                    console.error('Ошибка при получении баланса');
                 }
             } catch (error) {
-                console.error('Ошибка при отправке запроса:', error);
             }
         };
 

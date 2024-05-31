@@ -24,8 +24,8 @@ const Header = () => {
         navigate('/settings');
     }
     const handleLogout = () => {
-        localStorage.removeItem('token'); // Удаление токена из localStorage
-        navigate('/'); // Перенаправление на главную страницу
+        localStorage.removeItem('token');
+        navigate('/');
     };
 
     return (

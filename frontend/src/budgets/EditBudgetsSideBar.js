@@ -23,7 +23,7 @@ const EditBudgetsSideBar = ({ budget, categories, onClose, onEditBudget }) => {
             <button className="close-button" onClick={onClose}>Закрити</button>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label>Название бюджету:</label>
+                    <label>Назва бюджету:</label>
                     <input
                         type="text"
                         value={budgetName}
@@ -32,13 +32,13 @@ const EditBudgetsSideBar = ({ budget, categories, onClose, onEditBudget }) => {
                     />
                 </div>
                 <div className="form-group">
-                    <label>Категория:</label>
+                    <label>Категорія:</label>
                     <select
                         value={budgetCategory}
                         onChange={(e) => setBudgetCategory(e.target.value)}
                         required
                     >
-                        <option value="">Выберите категорию</option>
+                        <option value="">Выберіть категорію</option>
                         {categories.map((category) => (
                             <option key={category.id} value={category.id}>
                                 {category.name}
@@ -47,7 +47,7 @@ const EditBudgetsSideBar = ({ budget, categories, onClose, onEditBudget }) => {
                     </select>
                 </div>
                 <div className="form-group">
-                    <label>Сумма:</label>
+                    <label>Сума:</label>
                     <input
                         type="number"
                         value={budgetNeededValue}
@@ -55,7 +55,7 @@ const EditBudgetsSideBar = ({ budget, categories, onClose, onEditBudget }) => {
                         required
                     />
                 </div>
-                <button type="submit" className="submit-button">Сохранить</button>
+                <button type="submit" className="submit-button">Зберегти</button>
             </form>
         </div>
     );

@@ -1,7 +1,7 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #ccf; /* Новый цвет фона */
+    background-color: #ccf;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,7 +17,7 @@ body {
 }
 
 .box {
-    background-color: #ccf; /* Новый цвет фона */
+    background-color: #ccf;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -42,29 +42,29 @@ body {
 
 .input-group input {
     width: 100%;
-    max-width: 300px; /* Ограничение максимальной ширины полей ввода */
+    max-width: 300px;
     padding: 10px;
-    border: none; /* Убрана обводка */
+    border: none;
     border-radius: 5px;
     font-size: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавлена тень */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .input-group .input-error {
     width: 100%;
-    max-width: 300px; /* Ограничение максимальной ширины полей ввода */
+    max-width: 300px;
     padding: 10px;
-    border: none; /* Убрана обводка */
+    border: none;
     border-radius: 5px;
     background-color: rgba(255, 0, 0, 0.2);
     font-size: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавлена тень */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 
 .button {
     width: 100%;
-    max-width: 300px; /* Ограничение максимальной ширины кнопки */
+    max-width: 300px;
     padding: 10px;
     background-color: #000;
     color: #fff;
@@ -72,7 +72,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавлена тень */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .links {

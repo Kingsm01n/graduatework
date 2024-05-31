@@ -24,7 +24,7 @@ const EditTransactionsSideBar = ({ transaction, balances, categories, onClose, o
             <button className="close-button" onClick={onClose}>Закрити</button>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label>Название Транзакции:</label>
+                    <label>Назва Транзакції:</label>
                     <input
                         type="text"
                         value={transactionName}
@@ -39,7 +39,7 @@ const EditTransactionsSideBar = ({ transaction, balances, categories, onClose, o
                         onChange={(e) => setTransactionBalance(e.target.value)}
                         required
                     >
-                        <option value="">Выберите баланс</option>
+                        <option value="">Выберіть баланс</option>
                         {balances.map((balance) => (
                             <option key={balance.id} value={balance.id}>
                                 {balance.name}
@@ -48,13 +48,13 @@ const EditTransactionsSideBar = ({ transaction, balances, categories, onClose, o
                     </select>
                 </div>
                 <div className="form-group">
-                    <label>Категория:</label>
+                    <label>Категорія:</label>
                     <select
                         value={transactionCategory}
                         onChange={(e) => setTransactionCategory(e.target.value)}
                         required
                     >
-                        <option value="">Выберите категорию</option>
+                        <option value="">Выберіть категорію</option>
                         {categories.map((category) => (
                             <option key={category.id} value={category.id}>
                                 {category.name}
@@ -63,7 +63,7 @@ const EditTransactionsSideBar = ({ transaction, balances, categories, onClose, o
                     </select>
                 </div>
                 <div className="form-group">
-                    <label>Сумма:</label>
+                    <label>Сума:</label>
                     <input
                         type="number"
                         value={transactionValue}

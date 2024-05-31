@@ -40,14 +40,14 @@ const TransactionsChart = ({ balances, transactions }) => {
     labels,
     datasets: [
       {
-        label: 'Доходы',
+        label: 'Доходи',
         data: incomeDataset,
         borderColor: 'green',
         backgroundColor: 'rgba(0, 255, 0, 0.3)',
         fill: false,
       },
       {
-        label: 'Расходы',
+        label: 'Розходи',
         data: expenseDataset,
         borderColor: 'red',
         backgroundColor: 'rgba(255, 0, 0, 0.3)',

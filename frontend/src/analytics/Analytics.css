@@ -1,7 +1,6 @@
-/* General styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #ccf; /* Background color matching the design */
+    background-color: #ccf;
     margin: 0;
     padding: 0;
 }
@@ -20,7 +19,6 @@ body {
     padding: 20px;
 }
 
-/* Analytics section styles */
 .analytics-section {
     width: 100%;
     border-radius: 10px;
@@ -29,7 +27,7 @@ body {
 
 .analytics-section h2 {
     margin-top: 0;
-    color: #000; /* Black text color */
+    color: #000;
 }
 
 .charts {

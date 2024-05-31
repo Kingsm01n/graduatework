@@ -38,10 +38,8 @@ const Balances = () => {
                         .filter((balance) => balance.id !== deletedBalance.id)
                 );
             } else {
-                console.error('Ошибка при добавлении транзакции');
             }
         } catch (error) {
-            console.error('Ошибка при отправке запроса:', error);
         }
     };
 
@@ -64,10 +62,8 @@ const Balances = () => {
                 const data = await response.json();
                 setBalances((prevBalances) => [...prevBalances, data]);
             } else {
-                console.error('Ошибка при добавлении транзакции');
             }
         } catch (error) {
-            console.error('Ошибка при отправке запроса:', error);
         }
     };
 
@@ -89,10 +85,8 @@ const Balances = () => {
                         .map((balance) => balance.id === updatedBalance.id ? data : balance)
                 );
             } else {
-                console.error('Ошибка при добавлении транзакции');
             }
         } catch (error) {
-            console.error('Ошибка при отправке запроса:', error);
         }
     };
 
@@ -111,10 +105,8 @@ const Balances = () => {
                     const data = await response.json();
                     setBalances(data);
                 } else {
-                    console.error('Ошибка при получении баланса');
                 }
             } catch (error) {
-                console.error('Ошибка при отправке запроса:', error);
             }
         };
 

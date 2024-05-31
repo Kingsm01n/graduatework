@@ -14,10 +14,10 @@ const Register = () => {
 
         if (e !== password) {
             console.log(repeatPassword !== password, e, password)
-            setPasswordMatch(false); // Пароли не совпадают
-            return; // Прерываем отправку формы
+            setPasswordMatch(false);
+            return;
         } else {
-            setPasswordMatch(true); // Пароли совпадают
+            setPasswordMatch(true);
         }
     }
 
@@ -25,7 +25,7 @@ const Register = () => {
         e.preventDefault();
 
         if (repeatPassword !== password) {
-            return; // Прерываем отправку формы
+            return;
         }
 
         try {
@@ -40,13 +40,9 @@ const Register = () => {
 
             if (response.ok) {
                 navigate('/');
-                console.log('Успешный вход!');
             } else {
-                // Обработка ошибки
-                console.error('Ошибка при входе');
             }
         } catch (error) {
-            console.error('Ошибка при отправке запроса:', error);
         }
     };
 

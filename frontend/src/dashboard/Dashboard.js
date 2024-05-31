@@ -28,10 +28,8 @@ const Dashboard = () => {
                     const totalBalance = data.reduce((total, balance) => total + balance.currentValue, 0);
                     setBalance(totalBalance);
                 } else {
-                    console.error('Ошибка при получении баланса');
                 }
             } catch (error) {
-                console.error('Ошибка при отправке запроса:', error);
             }
         };
         const fetchTransactions = async () => {
@@ -48,10 +46,8 @@ const Dashboard = () => {
                     const data = await response.json();
                     setTransactions(data);
                 } else {
-                    console.error('Ошибка при получении баланса');
                 }
             } catch (error) {
-                console.error('Ошибка при отправке запроса:', error);
             }
         };
         const fetchCategories = async () => {
@@ -68,10 +64,8 @@ const Dashboard = () => {
                     const data = await response.json();
                     setCategories(data);
                 } else {
-                    console.error('Ошибка при получении баланса');
                 }
             } catch (error) {
-                console.error('Ошибка при отправке запроса:', error);
             }
         };
         const fetchBudgets = async () => {
@@ -88,10 +82,8 @@ const Dashboard = () => {
                     const data = await response.json();
                     setBudgets(data);
                 } else {
-                    console.error('Ошибка при получении баланса');
                 }
             } catch (error) {
-                console.error('Ошибка при отправке запроса:', error);
             }
         };
 

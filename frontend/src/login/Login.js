@@ -26,11 +26,8 @@ const Login = () => {
                 navigate('/home');
                 console.log('Успешный вход!');
             } else {
-                // Обработка ошибки
-                console.error('Ошибка при входе');
             }
         } catch (error) {
-            console.error('Ошибка при отправке запроса:', error);
         }
     };
 

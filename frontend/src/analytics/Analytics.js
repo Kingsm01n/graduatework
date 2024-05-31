@@ -25,10 +25,8 @@ const Analytics = () => {
                     const data = await response.json();
                     setTransactions(data);
                 } else {
-                    console.error('Ошибка при получении баланса');
                 }
             } catch (error) {
-                console.error('Ошибка при отправке запроса:', error);
             }
         };
         const fetchBudgets = async () => {
@@ -45,10 +43,8 @@ const Analytics = () => {
                     const data = await response.json();
                     setBudgets(data);
                 } else {
-                    console.error('Ошибка при получении баланса');
                 }
             } catch (error) {
-                console.error('Ошибка при отправке запроса:', error);
             }
         };
         const fetchBalances = async () => {
@@ -65,10 +61,8 @@ const Analytics = () => {
                     const data = await response.json();
                     setBalances(data);
                 } else {
-                    console.error('Ошибка при получении баланса');
                 }
             } catch (error) {
-                console.error('Ошибка при отправке запроса:', error);
             }
         };
 

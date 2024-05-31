@@ -29,10 +29,8 @@ const Settings = () => {
         setCategories([...categories, data]);
         setNewCategory('');
       } else {
-        console.error('Ошибка при добавлении категории');
       }
     } catch (error) {
-      console.error('Ошибка при отправке запроса:', error);
     }
   };
 
@@ -58,10 +56,8 @@ const Settings = () => {
         setEditCategoryId(null);
         setEditCategoryName('');
       } else {
-        console.error('Ошибка при обновлении категории');
       }
     } catch (error) {
-      console.error('Ошибка при отправке запроса:', error);
     }
   };
 
@@ -82,10 +78,8 @@ const Settings = () => {
         setEditCategoryId(null);
         setEditCategoryName('');
       } else {
-        console.error('Ошибка при обновлении категории');
       }
     } catch (error) {
-      console.error('Ошибка при отправке запроса:', error);
     }
   };
 
@@ -102,10 +96,8 @@ const Settings = () => {
       if (response.ok) {
         setCategories(categories.filter(category => category.id !== deletedCategory.id));
       } else {
-        console.error('Ошибка при удалении категории');
       }
     } catch (error) {
-      console.error('Ошибка при отправке запроса:', error);
     }
   };
 
@@ -127,10 +119,8 @@ const Settings = () => {
             setPhone(data.phoneNumber);
             setEmail(data.email);
           } else {
-            console.error('Ошибка при получении категорий');
           }
         } catch (error) {
-          console.error('Ошибка при отправке запроса:', error);
         }
     }
     const fetchCategories = async () => {
@@ -147,10 +137,8 @@ const Settings = () => {
           const data = await response.json();
           setCategories(data);
         } else {
-          console.error('Ошибка при получении категорий');
         }
       } catch (error) {
-        console.error('Ошибка при отправке запроса:', error);
       }
     };
 

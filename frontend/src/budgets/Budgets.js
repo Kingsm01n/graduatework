@@ -32,10 +32,8 @@ const Budgets = () => {
                 const data = await response.json();
                 setBudgets((prevBudgets) => [...prevBudgets, data]);
             } else {
-                console.error('Ошибка при добавлении бюджета');
             }
         } catch (error) {
-            console.error('Ошибка при отправке запроса:', error);
         }
     };
 
@@ -66,10 +64,8 @@ const Budgets = () => {
                         .map((budget) => budget.id === updatedBudget.id ? data : budget)
                 );
             } else {
-                console.error('Ошибка при добавлении транзакции');
             }
         } catch (error) {
-            console.error('Ошибка при отправке запроса:', error);
         }
     };
 
@@ -89,10 +85,8 @@ const Budgets = () => {
                         .filter((budget) => budget.id !== deletedBudget.id)
                 );
             } else {
-                console.error('Ошибка при добавлении транзакции');
             }
         } catch (error) {
-            console.error('Ошибка при отправке запроса:', error);
         }
     };
 
@@ -111,10 +105,8 @@ const Budgets = () => {
                     const data = await response.json();
                     setBudgets(data);
                 } else {
-                    console.error('Ошибка при получении баланса');
                 }
             } catch (error) {
-                console.error('Ошибка при отправке запроса:', error);
             }
         };
         const fetchCategories = async () => {
@@ -131,10 +123,8 @@ const Budgets = () => {
                     const data = await response.json();
                     setCategories(data);
                 } else {
-                    console.error('Ошибка при получении баланса');
                 }
             } catch (error) {
-                console.error('Ошибка при отправке запроса:', error);
             }
         };
 

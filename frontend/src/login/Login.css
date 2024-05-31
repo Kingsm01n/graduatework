@@ -41,17 +41,17 @@ body {
 
 .input-group input {
     width: 100%;
-    max-width: 300px; /* Ограничение максимальной ширины полей ввода */
+    max-width: 300px;
     padding: 10px;
-    border: none; /* Убрана обводка */
+    border: none;
     border-radius: 5px;
     font-size: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавлена тень */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .login-button {
     width: 100%;
-    max-width: 300px; /* Ограничение максимальной ширины кнопки */
+    max-width: 300px;
     padding: 10px;
     background-color: #000;
     color: #fff;
@@ -59,7 +59,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Добавлена тень */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .login-links {
