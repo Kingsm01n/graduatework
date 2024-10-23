@@ -14,7 +14,6 @@ ChartJS.register(
 );
 
 const TransactionsChart = ({ balances, transactions }) => {
-  // Преобразуем данные в формат, подходящий для Chart.js
   const labels = transactions.map(transaction => format(new Date(transaction.date), 'd MMM'));
 
   const incomeData = transactions

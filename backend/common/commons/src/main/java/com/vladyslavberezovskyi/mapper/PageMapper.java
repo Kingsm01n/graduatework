@@ -4,7 +4,7 @@ import com.vladyslavberezovskyi.util.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-@Component//TODO add validation and sort param
+@Component
 public class PageMapper {
 
     public Pageable pageRequestToPageable(PageRequest pageRequest) {

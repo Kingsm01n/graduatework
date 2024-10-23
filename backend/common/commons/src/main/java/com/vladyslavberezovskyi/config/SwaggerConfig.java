@@ -12,6 +12,4 @@ import org.springframework.context.annotation.Configuration;
         scheme = "bearer"
 )
 public class SwaggerConfig {
-
-    
 }
